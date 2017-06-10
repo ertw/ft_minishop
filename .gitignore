@@ -1,0 +1,8 @@
+test.php
+._*
+.nfs*
+*.out
+*.swp
+*.o
+*.a
+*.DS_Store
