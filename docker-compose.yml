@@ -1,0 +1,27 @@
+version: '3.1'
+
+services:
+
+    db:
+      image: postgres:9.6.2-alpine
+      environment:
+        POSTGRES_USER: minishop_user
+        POSTGRES_DB: minishop_db
+        POSTGRES_PASSWORD: my_password
+
+    adminer:
+      image: adminer
+      ports:
+        - 8080:8080
+
+    web:
+      build: .
+      depends_on:
+        - db
+      ports:
+        - 8088:8088
+      volumes:
+        - /home/docker/ft_minishop:/app
+      environment:
+        DATABASE_URL: postgres://minishop_user@db/minishop_db
+
