@@ -1,0 +1,21 @@
+# Username: postgres
+version: '3.1'
+
+services:
+
+    db:
+      image: postgres:alpine
+      environment:
+        POSTGRES_USER: minishop_user
+        POSTGRES_PASSWORD: my_password
+        POSTGRES_DB: minishop_db
+
+    adminer:
+      image: adminer
+      ports:
+        - 8080:8080
+    web:
+      depends_on:
+        - db
+        environment:
+          DATABASE_URL: postgres://minishop_user@postgres/minishop_db
