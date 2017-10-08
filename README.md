@@ -34,4 +34,4 @@ Run the database, php, and adminer containers:
 
 Watch the directory for changes to automatically update the site:
 
-`fswatch app/ ./update.sh`
+`fswatch -o app | xargs -n1 -I{} ./update.sh &`
