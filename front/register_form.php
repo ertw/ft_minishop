@@ -5,12 +5,15 @@
     <div class="form-group">
         <input class="form-control" name="password" placeholder="Password" type="password"/>
     </div>
-        <div class="form-group">
-            <input class="form-control" name="confirm" placeholder="Confirm Password" type="password"/>
-        </div>   
-        <div class="form-group">
-            <input class="submit" type="submit" value="Register"/>
-        </div>
+    <div class="form-group">
+        <input class="form-control" name="confirm" placeholder="Confirm Password" type="password"/>
+    </div>
+    <div class="form-group">
+        <input class="form-control" name="email" placeholder="Email" type="text"/>
+    </div>  
+    <div class="form-group">
+        <input class="submit" type="submit" value="Register"/>
+    </div>
 
 </form>
 <br />

@@ -30,4 +30,16 @@ if (!$result) {
 	echo "Error: Unable to create users table.\n";
 	exit;
 }
+
+$result = pg_prepare($db, "", "
+insert into minishop_db.users (name, password, email) values
+  ('erik williamson', '$2y$10$cNq1pqJy7g.759cWvpOUM.lYkh5AcSEVDzkWWedzq0iaEYora2K2q', 'me@erik.tw')
+, ('george costanza', '$2y$10$sTeO7dfHeAkG06PtP2PEhOU1VYpN.D4m/QmVRd0XAGp1kstM8rqjS', 'george.costanza69@yahoo.con')
+;
+");
+$result = pg_execute($db, "", []);
+if (!$result) {
+	echo "Error: Unable to create users.\n";
+	exit;
+}
 ?>

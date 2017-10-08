@@ -1,13 +1,23 @@
+body {
+	background-image: url("/img/bg.png");
+}
 .container
 {
 	margin-left: auto;
 	margin-right: auto;
+	min-height: 95.5vh;
+	background-color: rgba(255, 255, 255, 0.5);
 	text-align: center;
 }
 #top
 {
 	margin-bottom: 15px;
 	margin-top: 15px;
+}
+#top ul
+{
+	padding: 0.5em;
+	background-color: rgba(251, 228, 211, 0.5);
 }
 #top li
 {
@@ -29,6 +39,7 @@
 {
 	margin-left: -3.5em;
 	border: 1.2px solid #000;
+	background-color: rgba(251, 228, 211, 0.3);
 	list-style: none;
 }
 #sidebar li
@@ -58,6 +69,7 @@ input {
 	width: 8em;
 	margin: 5px;
 	padding: 8px;
+	background-color: rgba(255, 255, 255, 0.5);
 	border: 1px solid black;
 }
 .block img
