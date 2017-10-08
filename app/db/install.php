@@ -35,6 +35,20 @@ if (!$result) {
 }
 
 
+$result = pg_prepare($db, "", "
+create table if not exists minishop_db.products (
+  id serial primary key not null
+, productname varchar(255) not null
+, creation_date timestamp not null default current_timestamp
+, price money not null default 0
+);
+");
+$result = pg_execute($db, "", []);
+if (!$result) {
+	echo "Error: Unable to create users table.\n";
+	exit;
+}
+
 add_user(
 	'erik williamson'
 	, '$2y$10$cNq1pqJy7g.759cWvpOUM.lYkh5AcSEVDzkWWedzq0iaEYora2K2q'
@@ -45,4 +59,23 @@ add_user(
 	, 'some hash'
 	, 'bill@sal.com'
 );
+add_user(
+	'deleteme'
+	, 'some deleted hash'
+	, 'delete@me.com'
+);
+add_product(
+	'Pusheen Sushi'
+	, '9000.03'
+);
+add_product(
+	'Pusheen Birthday Cake'
+	, '9000.99'
+);
+add_product(
+	'Delete Me'
+	, '9000.99'
+);
+delete_product('Delete Me');
+delete_user('delete@me.com');
 ?>

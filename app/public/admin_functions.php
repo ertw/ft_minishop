@@ -13,10 +13,21 @@ function add_user($name, $password, $email) {
 	return $result;
 }
 
+function set_user_password($email, $newpassword) {
+	$query = "update minishop_db.users set password = $1 where email = $2;";
+	$result = pg_query_params($query, array($newpassword, $email));
+	return $result;
+}
+
 function add_product($productname, $price) {
-	$query = 'insert into minishop_db.prodcuts (productname, price) values ($1, $2);';
+	$query = 'insert into minishop_db.products (productname, price) values ($1, $2);';
 	$result = pg_query_params($query, array($productname, $price));
 	return $result;
 }
 
+function delete_product($productname) {
+	$query = 'delete from minishop_db.products where ((productname = $1));';
+	$result = pg_query_params($query, array($productname));
+	return $result;
+}
 ?>
