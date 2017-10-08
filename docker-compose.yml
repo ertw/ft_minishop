@@ -4,10 +4,7 @@ services:
 
     db:
       image: postgres:9.6.2-alpine
-      environment:
-        POSTGRES_USER: minishop_user
-        POSTGRES_DB: minishop_db
-        POSTGRES_PASSWORD: my_password
+      env_file: .db_creds.env
 
     adminer:
       image: adminer
@@ -24,4 +21,4 @@ services:
         - /home/docker/ft_minishop:/app
       environment:
         DATABASE_URL: postgres://minishop_user@db/minishop_db
-
+      env_file: .db_creds.env
