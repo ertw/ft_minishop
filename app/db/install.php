@@ -1,5 +1,7 @@
 <?php
-$db = pg_connect("host=db dbname=minishop_db password=my_password user=minishop_user options='--client_encoding=UTF8'");
+
+require_once("../db/connect.php");
+require_once('../public/admin_functions.php');
 
 $result = pg_prepare($db, "", "drop schema if exists minishop_db cascade;");
 $result = pg_execute($db, "", []);
@@ -31,15 +33,55 @@ if (!$result) {
 	exit;
 }
 
+
 $result = pg_prepare($db, "", "
-insert into minishop_db.users (name, password, email) values
-  ('erik williamson', '$2y$10$cNq1pqJy7g.759cWvpOUM.lYkh5AcSEVDzkWWedzq0iaEYora2K2q', 'me@erik.tw')
-, ('george costanza', '$2y$10$sTeO7dfHeAkG06PtP2PEhOU1VYpN.D4m/QmVRd0XAGp1kstM8rqjS', 'george.costanza69@yahoo.con')
-;
+create table if not exists minishop_db.products (
+  id serial primary key not null
+, productname varchar(255) not null
+, creation_date timestamp not null default current_timestamp
+, price money not null default 0
+);
 ");
 $result = pg_execute($db, "", []);
 if (!$result) {
-	echo "Error: Unable to create users.\n";
+	echo "Error: Unable to create users table.\n";
 	exit;
+}
+
+add_user(
+	'erik williamson'
+	, '$2y$10$cNq1pqJy7g.759cWvpOUM.lYkh5AcSEVDzkWWedzq0iaEYora2K2q'
+	, 'me@erik.tw'
+);
+add_user(
+	'bill'
+	, 'some hash'
+	, 'bill@sal.com'
+);
+add_user(
+	'deleteme'
+	, 'some deleted hash'
+	, 'delete@me.com'
+);
+add_product(
+	'Pusheen Sushi'
+	, '9000.03'
+);
+add_product(
+	'Pusheen Birthday Cake'
+	, '9000.99'
+);
+add_product(
+	'Delete Me'
+	, '9000.99'
+);
+delete_product('Delete Me');
+delete_user('delete@me.com');
+foreach(get_users() as $users => $user){
+    echo '<p>' . $user[name] . '</p>';
+}
+foreach(get_products() as $products => $product){
+    echo '<p>' . $product[productname] . '</p>';
+    echo '<b>' . $product[price] . '</b>';
 }
 ?>
