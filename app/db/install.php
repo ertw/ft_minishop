@@ -40,6 +40,8 @@ create table if not exists minishop_db.products (
 , productname varchar(255) not null
 , creation_date timestamp not null default current_timestamp
 , price money not null default 0
+, imagename varchar(255) not null default 'image.png'
+, category varchar(255) not null default 'default'
 );
 ");
 $result = pg_execute($db, "", []);

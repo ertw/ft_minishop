@@ -25,6 +25,18 @@ function add_product($productname, $price) {
 	return $result;
 }
 
+function set_product_category($productname, $category) {
+	$query = "update minishop_db.products set category = $1 where productname = $2;";
+	$result = pg_query_params($query, array($category, $productname));
+	return $result;
+}
+
+function set_product_image($productname, $imagename) {
+	$query = "update minishop_db.products set imagename = $1 where productname = $2;";
+	$result = pg_query_params($query, array($imagename, $productname));
+	return $result;
+}
+
 function delete_product($productname) {
 	$query = 'delete from minishop_db.products where ((productname = $1));';
 	$result = pg_query_params($query, array($productname));
