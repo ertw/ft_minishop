@@ -15,7 +15,11 @@
 		if (!$result) {
 			render("error.php", ["message"=>"Critical DB error: unable to look up user."]);
 		}
-		render("error.php", ["message"=>"$result"]);
+		$hash = pg_fetch_result($result, "password");
+		if (password_verify($_POST["password"], $hash)) {
+			render("error.php", ["message"=>"Passwords match"]);
+		}
+		render("error.php", ["message"=>"Passwords don't match"]);
 		// query database for user information
 		// if user exists, check password
 		// should only have 1 row with said username, if more htan one then problem
