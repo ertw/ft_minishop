@@ -19,9 +19,28 @@ function set_user_password($email, $newpassword) {
 	return $result;
 }
 
+function is_admin_user($id) {
+	$query = "select privilege from minishop_db.users where id = $1 limit 1;";
+	$result = pg_query_params($query, array($id));
+	$privilege = pg_fetch_result($result, 0);
+	return $privilege == 'admin' ? true : 0;
+}
+
 function add_product($productname, $price) {
 	$query = 'insert into minishop_db.products (productname, price) values ($1, $2);';
 	$result = pg_query_params($query, array($productname, $price));
+	return $result;
+}
+
+function set_product_category($productname, $category) {
+	$query = "update minishop_db.products set category = $1 where productname = $2;";
+	$result = pg_query_params($query, array($category, $productname));
+	return $result;
+}
+
+function set_product_image($productname, $imagename) {
+	$query = "update minishop_db.products set imagename = $1 where productname = $2;";
+	$result = pg_query_params($query, array($imagename, $productname));
 	return $result;
 }
 
