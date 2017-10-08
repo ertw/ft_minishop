@@ -22,5 +22,6 @@
 //get user information? necessary or not right now?
 //index page = general page that all public can see
 	require("../back/helper.php");
+
 	render("shop_front.php", ["title"=>NULL]);
 ?>

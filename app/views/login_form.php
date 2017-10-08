@@ -1,6 +1,6 @@
 <form action="login.php" method="post">
     <div class="form-group">
-        <input autocomplete="off" autofocus class="form-control" name="email" placeholder="Email" type="text"/>
+        <input autocomplete="off" autofocus class="form-control" name="email" placeholder="Email" type="email"/>
     </div>
     <div class="form-group">
         <input class="form-control" name="password" placeholder="Password" type="password"/>

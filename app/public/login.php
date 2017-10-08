@@ -16,8 +16,13 @@
 		if (!$result)
 			render("error.php", ["message"=>"Critical DB error: unable to look up user."]);
 		$hash = pg_fetch_result($result, 'password');
-		if (password_verify($_POST["password"], $hash)) {
-			render("error.php", ["message"=>"Passwords MATCH"]);
+		if (password_verify($_POST["password"], $hash)) 
+		{
+			if (!($id_result = pg_query_params($db, "SELECT id FROM minishop_db.users WHERE email = $1 LIMIT 1;", array($_POST["email"]))))
+					render("error.php", ["message"=>"Could not get user id"]);
+			$id = pg_fetch_result($id_result, 'id');			
+			$_SESSION["id"] = $id;
+			redirect("/public/index.php");		
 		}
 		$passwordhash = password_hash($_POST["password"], PASSWORD_DEFAULT);
 		render("error.php", ["message"=>"Passwords don't match"

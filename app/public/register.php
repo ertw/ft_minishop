@@ -23,10 +23,13 @@
 					// if state is returned a value then there's an error in the code, else everything is ok
 					if (!$state) // if state == 0  then sucessful and values will be inserted into database
 					{
+						if (!($id_result = pg_query_params($db, "SELECT id FROM minishop_db.users WHERE email = $1 LIMIT 1;", array($_POST["email"]))))
+							render("error.php", ["message"=>"Could not get last inserted user id"]);
+						$id = pg_fetch_result($id_result, 'id');
 						session_start();
-						redirect("/front/index.php");
-					}
-					render("error.php", ["message"=>"Email already in use"]);
+						$_SESSION["id"] = $id;
+						redirect("/public/index.php");
+					}				
 				}
 				else // results == 0 then thre are no results available, so error?
 					render("error.php", ["message"=>"Unable to create user account"]);
