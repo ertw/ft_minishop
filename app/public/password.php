@@ -19,7 +19,7 @@
 			else
 			{
 				$new_query = "UPDATE minishop_db.users SET password = $1 WHERE id = $2;";
-				$result = pg_send_query_params($db, $query, array(password_hash($_POST["new_pw"], PASSWORD_DEFAULT), $_SESSION["id"]));
+				$result = pg_send_query_params($db, $new_query, array(password_hash($_POST["new_pw"], PASSWORD_DEFAULT), $_SESSION["id"]));
 				if (!$result)
 					render("error.php", ["message"=>"UPDATE Critical DB error: unable to look up user."]);
 				render("pw_confirm.php");
