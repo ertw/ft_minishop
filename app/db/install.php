@@ -1,7 +1,6 @@
 <?php
 
 require_once("../db/connect.php");
-//$db = pg_connect("host=db dbname=minishop_db password=my_password user=minishop_user options='--client_encoding=UTF8'");
 require_once('../public/admin_functions.php');
 
 $result = pg_prepare($db, "", "drop schema if exists minishop_db cascade;");
@@ -78,4 +77,11 @@ add_product(
 );
 delete_product('Delete Me');
 delete_user('delete@me.com');
+foreach(get_users() as $users => $user){
+    echo '<p>' . $user[name] . '</p>';
+}
+foreach(get_products() as $products => $product){
+    echo '<p>' . $product[productname] . '</p>';
+    echo '<b>' . $product[price] . '</b>';
+}
 ?>

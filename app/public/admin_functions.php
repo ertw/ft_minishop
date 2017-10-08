@@ -30,4 +30,21 @@ function delete_product($productname) {
 	$result = pg_query_params($query, array($productname));
 	return $result;
 }
+
+function get_users() {
+	$query = 'select * from minishop_db.users';
+	$result = pg_query($query);
+	$users = pg_fetch_all($result);
+	// this is a 2d array of users
+	return $users;
+}
+
+function get_products() {
+	$query = 'select * from minishop_db.products';
+	$result = pg_query($query);
+	$products = pg_fetch_all($result);
+	// this is a 2d array of products
+	return $products;
+}
+
 ?>
