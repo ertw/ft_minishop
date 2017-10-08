@@ -11,11 +11,11 @@
 	<body>
 		<div class="container">
 			<div id="top">
-				<div style="width: 40%; display: inline-flex">
+				<a href="index.php">
+				<div style="width: 40%; height: 15vmin; display: inline-flex; overflow: hidden; justify-content: center">
 					<h1>Pusheen Treats</h1>
-					<a href="index.php"><img alt="FT_MiniShop Logo Goes Here" src="../img/pusheen.png"/></a>
-				</div>
-					<br />FT_MiniShop Logo Goes ^
+					<img alt="FT_MiniShop Logo Goes Here" src="../img/pusheen.png"/>
+				</div></a>
 					<ul class="nav" align="right">
 						<li><a href="index.php">Home</a></li>
 						<li><a href="cart.php">Cart</a></li>

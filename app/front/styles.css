@@ -24,6 +24,10 @@ body {
 	display: inline;
 	margin: 0 10px 0 10px;
 }
+#top h1
+{
+	font-size: 3vw;
+}
 #top img
 {
 	display: inline-flex;

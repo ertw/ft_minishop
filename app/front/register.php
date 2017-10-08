@@ -5,8 +5,8 @@
 		render("register_form.php", ["title"=>"Register"]);
 	elseif ($_SERVER["REQUEST_METHOD"] == "POST")
 	{
-		if (empty($_POST["user"]) || empty($_POST["password"]))
-			render("error.php", ["message"=>"Need a username / password"]);
+		if (empty($_POST["user"]) || empty($_POST["password"]) || empty($_POST["email"]))
+			render("error.php", ["message"=>"Need a username / password / email"]);
 		elseif ($_POST["password"] != $_POST["confirm"])
 			render("error.php", ["message"=>"Passwords don't match"]);
 		else
