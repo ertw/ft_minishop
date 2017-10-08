@@ -12,9 +12,8 @@
 		// let's query the db
 		$query = "SELECT password FROM minishop_db.users WHERE email = $1 LIMIT 1;";
 		$result = pg_query_params($db, $query, array($_POST["user"]));
-		if (!$result) {
+		if (!$result) 
 			render("error.php", ["message"=>"Critical DB error: unable to look up user."]);
-		}
 		$hash = pg_fetch_result($result, "password");
 		if (password_verify($_POST["password"], $hash)) {
 			render("error.php", ["message"=>"Passwords match"]);

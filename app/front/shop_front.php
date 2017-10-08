@@ -1,5 +1,5 @@
   <div class="block">
-    <img src="../img/bread.png" style="max-width: 70%" alt="Pusheen Bread"/>
+    <img src="../img/bread.png" style="top: 0; max-width: 70%" alt="Pusheen Bread"/>
     <span>
       <br />Pusheen Bread 
       <br />$9000.00
