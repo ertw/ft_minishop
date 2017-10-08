@@ -13,13 +13,18 @@
 	// May want to make the query a bit more specific like searching if user even exists in the db
 		$query = "SELECT password FROM minishop_db.users WHERE email = $1 LIMIT 1;";
 		$result = pg_query_params($db, $query, array($_POST["email"]));
-		if (!$result) 
+		if (!$result)
 			render("error.php", ["message"=>"Critical DB error: unable to look up user."]);
 		$hash = pg_fetch_result($result, 'password');
 		if (password_verify($_POST["password"], $hash)) {
 			render("error.php", ["message"=>"Passwords MATCH"]);
 		}
-		render("error.php", ["message"=>"Passwords don't match"]);
+		$passwordhash = password_hash($_POST["password"], PASSWORD_DEFAULT);
+		render("error.php", ["message"=>"Passwords don't match"
+			.PHP_EOL. "input password: {$_POST["password"]}"
+			.PHP_EOL. "hash of input: {$passwordhash}"
+			.PHP_EOL. "hash of db: $hash"
+			]);
 		// query database for user information
 		// if user exists, check password
 		// should only have 1 row with said username, if more htan one then problem
@@ -29,4 +34,3 @@
 		render("error.php", ["message"=>"You don't exist."]);
 	}
 ?>
- 
