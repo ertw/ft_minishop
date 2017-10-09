@@ -2,6 +2,10 @@
 
 This is a toy PHP application for learning. It was a two-day project that we started saturday morning and finished Sunday around midnight.
 
+##### Tools:
+* Docker, docker-machine, docker-compose, Alpine Linux
+* PostgreSQL, PHP 5.6, shell scripts
+
 ##### Requirements:
 
 * Data management
