@@ -50,21 +50,42 @@ if (!$result) {
 	exit;
 }
 
+$result = pg_prepare($db, "", "
+create table if not exists minishop_db.orders (
+  id serial primary key not null
+, email varchar(255) not null references minishop_db.users(email)
+, creation_date timestamp not null default current_timestamp
+, details text not null default 'no order data'
+);
+");
+$result = pg_execute($db, "", []);
+if (!$result) {
+	echo "Error: Unable to create orders table.\n";
+	exit;
+}
+
 add_user(
 	'erik williamson'
-	, '$2y$10$cNq1pqJy7g.759cWvpOUM.lYkh5AcSEVDzkWWedzq0iaEYora2K2q'
+	, 'myPass'
 	, 'me@erik.tw'
 );
 add_user(
 	'bill'
-	, 'some hash'
+	, 'password'
 	, 'bill@sal.com'
 );
 add_user(
+	'terri'
+	, 'password'
+	, 't@h.com'
+);
+add_user(
 	'deleteme'
-	, 'some deleted hash'
+	, 'some deleted password'
 	, 'delete@me.com'
 );
+set_user_admin('me@erik.tw');
+set_user_admin('t@h.com');
 add_product(
 	'Pusheen Sushi'
 	, '9000.03'
@@ -79,6 +100,7 @@ add_product(
 );
 delete_product('Delete Me');
 delete_user('delete@me.com');
+add_order('me@erik.tw', 'this is my cool order of pusheens, for $99999');
 foreach(get_users() as $users => $user){
     echo '<p>' . $user[name] . '</p>';
 }

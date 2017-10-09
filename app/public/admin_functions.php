@@ -7,15 +7,28 @@ function delete_user($email) {
 	return $result;
 }
 
-function add_user($name, $password, $email) {
+function delete_user_by_id($id) {
+	$query = 'delete from minishop_db.users where ((id = $1))';
+	$result = pg_query_params($query, array($id));
+	return $result;
+}
+
+function add_user($name, $password_in_plaintext, $email) {
 	$query = "insert into minishop_db.users (name, password, email) values ($1, $2, $3);";
-	$result = pg_query_params($query, array($name, $password, $email));
+	$hash = password_hash($password_in_plaintext, PASSWORD_DEFAULT);
+	$result = pg_query_params($query, array($name, $hash, $email));
 	return $result;
 }
 
 function set_user_password($email, $newpassword) {
 	$query = "update minishop_db.users set password = $1 where email = $2;";
 	$result = pg_query_params($query, array($newpassword, $email));
+	return $result;
+}
+
+function set_user_admin($email) {
+	$query = "update minishop_db.users set privilege = 'admin' where email = $1;";
+	$result = pg_query_params($query, array($email));
 	return $result;
 }
 
@@ -50,12 +63,18 @@ function delete_product($productname) {
 	return $result;
 }
 
+function delete_product_by_id($id) {
+	$query = 'delete from minishop_db.products where ((id = $1));';
+	$result = pg_query_params($query, array($id));
+	return $result;
+}
+
 function get_users() {
 	$query = 'select * from minishop_db.users';
 	$result = pg_query($query);
 	$users = pg_fetch_all($result);
 	// this is a 2d array of users
-	return $users;
+	return $users ? : [];
 }
 
 function get_products() {
@@ -63,7 +82,27 @@ function get_products() {
 	$result = pg_query($query);
 	$products = pg_fetch_all($result);
 	// this is a 2d array of products
-	return $products;
+	return $products ? : [];
+}
+
+function add_order($email, $details) {
+	$query = 'insert into minishop_db.orders (email, details) values ($1, $2);';
+	$result = pg_query_params($query, array($email, $details));
+	return $result;
+}
+
+function get_orders() {
+	$query = 'select * from minishop_db.orders';
+	$result = pg_query($query);
+	$orders = pg_fetch_all($result);
+	// this is a 2d array of products
+	return $orders ? : [];
+}
+
+function delete_order_by_id($id) {
+	$query = 'delete from minishop_db.orders where ((id = $1))';
+	$result = pg_query_params($query, array($id));
+	return $result;
 }
 
 ?>
