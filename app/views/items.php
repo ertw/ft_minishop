@@ -1,6 +1,7 @@
 <h2>Shopping Cart</h2>
 <div class ="table">
-	<table class="table table-bordered">
+	<center>
+	<table class="table-bordered">
 		<tr>
 			<th width="40%">Item Name</th>
 			<th width="10%">Quantity</th>
@@ -27,7 +28,7 @@
 			}
 		?>
 		<tr>
-			<td align="right">Total</td>
+			<td align="right"><b>TOTAL</b></td>
 			<td align="right">$<?php echo number_format($total, 2); ?></td>
 			<td></td>
 		</tr>
@@ -35,4 +36,5 @@
 		}
 		?>
 	</table>
+	</center>
 </div>

@@ -5,6 +5,8 @@
 
 	if (isset($_POST["add_cart"]))
 	{
+		if (!(isset($_SESSION["id"])))
+			render("error.php", ["message"=>"Please sign in!"]);
 		if (isset($_SESSION["cart"]))
 		{
 			$item_array_id = array_column($_SESSION["cart"], "item_id");
@@ -21,10 +23,7 @@
 			}
 			else
 			{
-				var_dump($_SESSION["cart"][$_GET["id"]]["nb_item"]);
-				var_dump(intval($_POST["quantity"]));
 				$_SESSION["cart"][0]["nb_item"] += $_POST["quantity"];
-				print_r($_SESSION["cart"]);
 				render("shop_front.php", ["title"=>"My Cart"]);
 			}
 		}
@@ -36,7 +35,7 @@
 				'item_price'=>	$_POST["price_hid"],
 				'nb_item'	=>	$_POST["quantity"]
 			);
-			
+
 			$_SESSION["cart"][0] = $item_array;
 		}
 	}

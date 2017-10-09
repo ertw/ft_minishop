@@ -17,7 +17,7 @@ if (is_admin_user($_SESSION['id'])) {
 			delete_product_by_id($_POST[product_id]);
 		}
 		else if ($_GET[act] == 'add_product') {
-			add_product($_POST[product_name], $_POST[price]);
+			add_product($_POST[product_name], $_POST[price], $_POST[price]);
 		}
 		else if ($_GET[act] == 'add_user') {
 			add_user($_POST[user_name], $_POST[user_password], $_POST[email]);

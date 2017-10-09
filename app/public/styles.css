@@ -94,6 +94,13 @@ input
 	font-size: 82%;
 	margin-top: 5.4em;
 }
+.table td
+{
+	border: 1px solid black;
+	max-width: 20px;
+	padding: 5px;
+	text-align: left;
+}
 #middle .form-control
 {
 	display: inline-block;

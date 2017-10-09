@@ -3,16 +3,15 @@
   {
 ?>
   <div class="inventory">
-    <form method="post" action="index.php?action=add&id=<?php echo $product["id"]; ?>">
+    <form method="post" action="index.php?action=add&id=<?=$product["id"];?>">
       <div class="block">
-        <!--<img src="<?php echo $product[img]; ?>"-->
-        <img src="../public/img/bread.png" style="top: 0; max-width: 68%" alt="Pusheen Bread"/>
+	<img src="../public/img/<?=$product[imagename]?>" style="top: 0; max-width: 15vw; max-height: 10vh" alt="picture of pusheen"/>
         <br />
-        <h4 class="text-info"><?php echo $product[productname]; ?></h4>
-        <h5 class="text-price">$<?php echo $product[price]; ?></h5>
+        <h4 class="text-info"><?=$product[productname];?></h4>
+        <h5 class="text-price">$<?=$product[price]; ?></h5>
         <input type="number" min="0" name="quantity" class="form-control" value="1" />
-        <input type="hidden" name="name_hid" value="<?php echo $product[productname]; ?>" />
-        <input type="hidden" name="price_hid" value="<?php echo $product[price]; ?>"/><br />
+        <input type="hidden" name="name_hid" value="<?=$product[productname];?>" />
+        <input type="hidden" name="price_hid" value="<?=$product[price];?>"/><br />
         <input name="add_cart" class="submit" type="submit" value="Add to Cart"/>
       </div>
     </form>

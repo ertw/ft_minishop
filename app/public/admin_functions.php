@@ -39,9 +39,9 @@ function is_admin_user($id) {
 	return $privilege == 'admin' ? true : 0;
 }
 
-function add_product($productname, $price) {
-	$query = 'insert into minishop_db.products (productname, price) values ($1, $2);';
-	$result = pg_query_params($query, array($productname, $price));
+function add_product($productname, $price, $imagename) {
+	$query = 'insert into minishop_db.products (productname, price, imagename) values ($1, $2, $3);';
+	$result = pg_query_params($query, array($productname, $price, $imagename));
 	return $result;
 }
 

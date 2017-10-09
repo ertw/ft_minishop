@@ -62,6 +62,8 @@ foreach(get_products() as $products => $product){
 ?>
 Product Name: <input type="text" name="product_name" required/>
 <br>
+Product Image: <input type="text" name="product_image" required/>
+<br>
 Price: <input type="number" name="price" required/>
 <br>
 <input class="submit" type="submit" value="Add Product"/>
