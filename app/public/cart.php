@@ -7,12 +7,6 @@
 	{
 		if (!(isset($_SESSION["id"])))
 			render("error.php", ["message"=>"Please sign in!"]);
-		if (isset($_GET["action"]) && $_GET["action"] == "delete")
-		{
-			$query = "DELETE FROM minishop_db.carts WHERE user_id= $1 AND prod_id = $2;";
-			$result = pg_query_params($query, array($_SESSION["id"], $_GET["id"]));
-			redirect("/public/cart.php");
-		}
 		add_to_cart($_SESSION["id"], $_GET["id"], $_POST["quantity"]);
 		$cart_info = [];
 		$rows = get_cart($_SESSION["id"]);
@@ -20,9 +14,29 @@
 		{
 			$cart_info[] = ["item_name"=>$_POST["name_hid"],
 							"quantity"=>$row["quantity"],
-							"price"=>$_POST["price_hid"]];
+							"price"=>$_POST["price_hid"],
+							"p_id"=>$_GET["id"]];
 		}
 		render("items.php", ["cart_info"=>$cart_info]);
 	}
-	render("items.php", ["title"=>"My Cart"]);
+	if (isset($_GET["action"]) && $_GET["action"] == "delete")
+	{
+		$query = "DELETE FROM minishop_db.carts WHERE user_id=$1 AND prod_id = $2;";
+		$result = pg_query_params($query, array($_SESSION["id"],$_GET["id"]));
+		render("error.php",["message"=>"Item removed"]);
+	}
+	$cart_info = [];
+	$rows = get_cart($_SESSION["id"]);
+	$prod = get_products();
+
+	foreach ($rows as $row)
+	{
+		$name = get_product_name($row["prod_id"]);
+		$price = get_product_price($row["prod_id"]);
+		$cart_info[] = ["item_name"=>$name,
+							"quantity"=>$row["quantity"],
+							"price"=>$price,
+							"p_id"=>$row["prod_id"]];
+	}
+	render("items.php", ["title"=>"My Cart", "cart_info"=>$cart_info]);
 ?>

@@ -23,7 +23,7 @@
 			<td><?php echo intval($info["quantity"]); ?></td>
 			<td>$<?php echo $info["price"]; ?></td>
 			<td>$<?php echo number_format($info["quantity"] * $info["price"], 2, '.', ''); ?></td>
-			<td><a href="index.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span class="submit">Remove</span></a></td>
+			<td><a href="cart.php?action=delete&id=<?php echo $info["p_id"]; ?>"?><span class="submit">Remove</span></a></td>
 		</tr>
 		<?php 
 				$total = $total + ($info["quantity"] * $info["price"]);

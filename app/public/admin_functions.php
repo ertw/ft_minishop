@@ -39,9 +39,9 @@ function is_admin_user($id) {
 	return $privilege == 'admin' ? true : 0;
 }
 
-function add_product($productname, $price, $imagename, $category) {
-	$query = 'insert into minishop_db.products (productname, price, imagename, category) values ($1, $2, $3, $4);';
-	$result = pg_query_params($query, array($productname, $price, $imagename, $category));
+function add_product($productname, $price, $imagename) {
+	$query = 'insert into minishop_db.products (productname, price, imagename) values ($1, $2, $3);';
+	$result = pg_query_params($query, array($productname, $price, $imagename));
 	return $result;
 }
 
@@ -85,6 +85,20 @@ function get_products() {
 	return $products ? : [];
 }
 
+function get_product_name($id) {
+	$query = 'select productname from minishop_db.products where id = $1 limit 1';
+	$result = pg_query_params($query, array($id));
+	$products = pg_fetch_result($result, 0);
+	return $products;
+}
+
+function get_product_price($id) {
+	$query = 'select price from minishop_db.products where id = $1 limit 1';
+	$result = pg_query_params($query, array($id));
+	$products = pg_fetch_result($result, 0);
+	return $products;
+}
+
 function add_order($email, $details) {
 	$query = 'insert into minishop_db.orders (email, details) values ($1, $2);';
 	$result = pg_query_params($query, array($email, $details));
@@ -107,10 +121,10 @@ function delete_order_by_id($id) {
 
 function add_to_cart($user_id, $prod_id, $quantity) {
 	$query = 'insert into minishop_db.carts as cart (user_id, prod_id, quantity) values ($1, $2, $3)
-		on conflict (user_id, prod_id)
+		on conflict (user_id, prod_id) 
 		do update set quantity = cart.quantity + $3
 		where cart.user_id = $1 and cart.prod_id = $2
-		;';
+;';
 	$result = pg_query_params($query, array($user_id, $prod_id, $quantity));
 	return $result;
 }
