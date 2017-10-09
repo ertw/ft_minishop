@@ -7,6 +7,7 @@
 	{
 		if (!(isset($_SESSION["id"])))
 			render("error.php", ["message"=>"Please sign in!"]);
+		/*
 		add_to_cart($_SESSION["id"], $_GET["id"], $_POST["quantity"]);
 		$rows = get_cart($_SESSION["id"]);
 		$cart_info = [];
@@ -14,7 +15,7 @@
 		{
 			$cart_info[] = ["item_name"=>$_POST["name_hid"]
 							"quantity"=>]
-		}
+		}*/
 
 	/*
 
