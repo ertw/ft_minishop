@@ -29,11 +29,11 @@
 			</div>
 			<div id="sidebar">
 				<ul class="categories">
-					<li><a href="#">Breakfast</a></li>
-					<li><a href="#">Lunch / Dinner</a></li>
-					<li><a href="#">Dessert</a></li>
-					<li><a href="#">Pusheen</a></li>
-					<li><a href="#">Other</a></li>
+					<li><a href="/public/index.php?cat=breakfast">Breakfast</a></li>
+					<li><a href="/public/index.php?cat=lunch">Lunch / Dinner</a></li>
+					<li><a href="/public/index.php?cat=dessert">Dessert</a></li>
+					<li><a href="/public/index.php?cat=0">Pusheen</a></li>
+					<li><a href="/public/index.php?cat=other">Other</a></li>
 				</ul>
 			</div>
 		<div id="middle">
