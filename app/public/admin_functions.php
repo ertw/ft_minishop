@@ -105,4 +105,14 @@ function delete_order_by_id($id) {
 	return $result;
 }
 
+function add_to_cart($user_id, $prod_id, $quantity) {
+	$query = 'insert into minishop_db.carts as cart (user_id, prod_id, quantity) values ($1, $2, $3)
+		on conflict (user_id, prod_id) 
+		do update set quantity = cart.quantity + $3
+		where cart.user_id = $1 and cart.prod_id = $2
+;';
+	$result = pg_query_params($query, array($user_id, $prod_id, $quantity));
+	return $result;
+}
+
 ?>
