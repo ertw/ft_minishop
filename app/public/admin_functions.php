@@ -116,7 +116,7 @@ function add_to_cart($user_id, $prod_id, $quantity) {
 }
 
 function get_cart($id) {
-	$query = 'select * from minishop_db.cart where id = $1;';
+	$query = 'select * from minishop_db.carts where user_id = $1;';
 	$result = pg_query_params($query, array($id));
 	$cart = pg_fetch_all($result);
 	// this is a 2d array of cart

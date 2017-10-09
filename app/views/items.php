@@ -10,21 +10,23 @@
 			<th width="5%">Action</th>
 		</tr>
 		<?php
-			$rows = get_cart($_SESSION["id"]);
+			//$rows = get_cart($_SESSION["id"]);
 			//$price & $name; // get in index.php
-
-			foreach($rows => $row)
+			if (isset($_SESSION["id"]) && isset($cart_info))
 			{
+				$total = 0;
+				foreach($cart_info as $info)
+				{
 		?>
 		<tr>
-			<td><?php echo $values["item_name"]; ?></td>
-			<td><?php echo intval($values["nb_item"]); ?></td>
-			<td>$<?php echo $values["item_price"]; ?></td>
-			<td>$<?php echo number_format($values["nb_item"] * $values["item_price"], 2, '.', ''); ?></td>
+			<td><?php echo $info["item_name"]; ?></td>
+			<td><?php echo intval($info["quantity"]); ?></td>
+			<td>$<?php echo $info["price"]; ?></td>
+			<td>$<?php echo number_format($info["quantity"] * $info["price"], 2, '.', ''); ?></td>
 			<td><a href="index.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span class="submit">Remove</span></a></td>
 		</tr>
 		<?php 
-				$total = $total + ($values["nb_item"] * $values["item_price"]);
+				$total = $total + ($info["quantity"] * $info["price"]);
 			}
 		?>
 		<tr>
@@ -32,9 +34,7 @@
 			<td align="right">$<?php echo number_format($total, 2); ?></td>
 			<td></td>
 		</tr>
-		<?php
-		}
-		?>
+		<?php } ?>
 	</table>
 	</center>
 </div>

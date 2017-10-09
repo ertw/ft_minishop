@@ -3,7 +3,7 @@
   {
 ?>
   <div class="inventory">
-    <form method="post" action="index.php?action=add&id=<?=$product["id"];?>">
+    <form method="post" action="cart.php?action=add&id=<?=$product["id"];?>">
       <div class="block">
 	<img src="../public/img/<?=$product[imagename]?>" style="top: 0; max-width: 15vw; max-height: 10vh" alt="picture of pusheen"/>
         <br />
