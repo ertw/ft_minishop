@@ -63,6 +63,21 @@ if (!$result) {
 	echo "Error: Unable to create orders table.\n";
 	exit;
 }
+$result = pg_prepare($db, "", "
+create table if not exists minishop_db.carts (
+  id serial primary key not null
+, creation_date timestamp not null default current_timestamp
+, user_id integer not null references minishop_db.users(id)
+, prod_id integer not null
+, quantity integer not null default 0
+, constraint user_prod_un unique (user_id, prod_id)
+);
+");
+$result = pg_execute($db, "", []);
+if (!$result) {
+	echo "Error: Unable to create orders table.\n";
+	exit;
+}
 
 // list of users
 $users = [
@@ -141,6 +156,9 @@ foreach ($pusheens as list($name, $price, $imagename)) {
 delete_user('delete@me.com');
 // test adding an order
 add_order('me@erik.tw', 'this is my cool order of pusheens, for $99999');
+// try adding an item to the cart
+add_to_cart(1, 2, 2);
+add_to_cart(1, 2, 2);
 echo '<h3>Added some users:</h3>';
 foreach(get_users() as $users => $user){
     echo '<p>' . $user[name] . '</p>';
