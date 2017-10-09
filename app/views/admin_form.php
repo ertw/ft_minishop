@@ -1,6 +1,6 @@
 <section name="delete_user">
 <hr>
-<form action="admin_form.php" method="post">
+<form action="admin.php?act=delete_user_by_id" method="post">
 <?php
 require_once('../public/admin_functions.php');
 foreach(get_users() as $users => $user){
@@ -8,14 +8,14 @@ foreach(get_users() as $users => $user){
 }
 ?>
 <p>Enter user ID to delete</p>
-<input type="number" name="id" required/>
+<input type="number" name="user_id" required/>
 <input class="submit" type="submit" value="Delete User"/>
 </form>
 </section>
 
 <section name="delete_product">
 <hr>
-<form action="admin_form.php" method="post">
+<form action="admin.php?act=delete_product" method="post">
 <?php
 require_once('../public/admin_functions.php');
 foreach(get_products() as $products => $product){
@@ -23,14 +23,14 @@ foreach(get_products() as $products => $product){
 }
 ?>
 <p>Enter product ID to delete</p>
-<input type="number" required/>
+<input type="number" name="product_id" required/>
 <input class="submit" type="submit" value="Delete User"/>
 </form>
 </section>
 
 <section name="add_product">
 <hr>
-<form action="admin_form.php" method="post">
+<form action="admin.php" method="post">
 <?php
 require_once('../public/admin_functions.php');
 foreach(get_products() as $products => $product){

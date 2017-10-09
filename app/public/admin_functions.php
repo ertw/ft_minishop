@@ -7,6 +7,12 @@ function delete_user($email) {
 	return $result;
 }
 
+function delete_user_by_id($id) {
+	$query = 'delete from minishop_db.users where ((id = $1))';
+	$result = pg_query_params($query, array($id));
+	return $result;
+}
+
 function add_user($name, $password, $email) {
 	$query = "insert into minishop_db.users (name, password, email) values ($1, $2, $3);";
 	$result = pg_query_params($query, array($name, $password, $email));
@@ -50,12 +56,18 @@ function delete_product($productname) {
 	return $result;
 }
 
+function delete_product_by_id($id) {
+	$query = 'delete from minishop_db.products where ((id = $1));';
+	$result = pg_query_params($query, array($id));
+	return $result;
+}
+
 function get_users() {
 	$query = 'select * from minishop_db.users';
 	$result = pg_query($query);
 	$users = pg_fetch_all($result);
 	// this is a 2d array of users
-	return $users;
+	return $users ? : [];
 }
 
 function get_products() {
@@ -63,7 +75,7 @@ function get_products() {
 	$result = pg_query($query);
 	$products = pg_fetch_all($result);
 	// this is a 2d array of products
-	return $products;
+	return $products ? : [];
 }
 
 ?>
