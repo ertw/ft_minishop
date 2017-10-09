@@ -116,41 +116,61 @@ $pusheens = [
 		'Pusheen Sushi'
 		, '9000.03'
 		, 'sushi.gif'
+		, 'lunch'
 	]
 	, [
 
 		'Pusheen Cupcake'
 		, '9000.99'
 		, 'cupcake.png'
+		, 'dessert'
 	]
 	, [
 
 		'Pusheen Pizza'
 		, '9000.99'
 		, 'pizza.png'
+		, 'lunch'
 	]
 	, [
 
 		'Pusheen Ramen'
 		, '9000.99'
 		, 'ramen.png'
+		, 'luch'
 	]
 	, [
 
 		'Pusheen Rice'
 		, '9000.99'
 		, 'cupcake.png'
+		, 'lunch'
 	]
 	, [
 
 		'Pusheen Bread'
 		, '9000.99'
 		, 'bread.png'
+		, 'lunch'
+	]
+	, [
+
+		'Pusheen Heart'
+		, '9000.99'
+		, 'heart.png'
+		, 'other'
+	]
+	, [
+
+		'Pusheen Pancake'
+		, '9000.99'
+		, 'pancake.png'
+		, 'breakfast'
 	]
 ];
 // add all the pusheens
-foreach ($pusheens as list($name, $price, $imagename)) {
-	add_product($name, $price, $imagename);
+foreach ($pusheens as list($name, $price, $imagename, $category)) {
+	add_product($name, $price, $imagename, $category);
 }
 // test deleting a user
 delete_user('delete@me.com');
