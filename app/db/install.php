@@ -156,9 +156,11 @@ foreach ($pusheens as list($name, $price, $imagename)) {
 delete_user('delete@me.com');
 // test adding an order
 add_order('me@erik.tw', 'this is my cool order of pusheens, for $99999');
-// try adding an item to the cart
+// try adding and deleting items to the cart
 add_to_cart(1, 2, 2);
+delete_carts(1);
 add_to_cart(1, 2, 2);
+// print out the users and products
 echo '<h3>Added some users:</h3>';
 foreach(get_users() as $users => $user){
     echo '<p>' . $user[name] . '</p>';

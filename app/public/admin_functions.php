@@ -70,7 +70,7 @@ function delete_product_by_id($id) {
 }
 
 function get_users() {
-	$query = 'select * from minishop_db.users';
+	$query = 'select * from minishop_db.users;';
 	$result = pg_query($query);
 	$users = pg_fetch_all($result);
 	// this is a 2d array of users
@@ -78,7 +78,7 @@ function get_users() {
 }
 
 function get_products() {
-	$query = 'select * from minishop_db.products';
+	$query = 'select * from minishop_db.products;';
 	$result = pg_query($query);
 	$products = pg_fetch_all($result);
 	// this is a 2d array of products
@@ -92,15 +92,15 @@ function add_order($email, $details) {
 }
 
 function get_orders() {
-	$query = 'select * from minishop_db.orders';
+	$query = 'select * from minishop_db.orders;';
 	$result = pg_query($query);
 	$orders = pg_fetch_all($result);
-	// this is a 2d array of products
+	// this is a 2d array of orders
 	return $orders ? : [];
 }
 
 function delete_order_by_id($id) {
-	$query = 'delete from minishop_db.orders where ((id = $1))';
+	$query = 'delete from minishop_db.orders where ((id = $1));';
 	$result = pg_query_params($query, array($id));
 	return $result;
 }
@@ -113,6 +113,11 @@ function add_to_cart($user_id, $prod_id, $quantity) {
 ;';
 	$result = pg_query_params($query, array($user_id, $prod_id, $quantity));
 	return $result;
+}
+
+function delete_carts($user_id) {
+	$query = 'delete from minishop_db.carts where (user_id = $1);';
+	$result = pg_query_params($query, array($user_id));
 }
 
 ?>
