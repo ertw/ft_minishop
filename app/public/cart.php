@@ -10,12 +10,16 @@
 		add_to_cart($_SESSION["id"], $_GET["id"], $_POST["quantity"]);
 		$cart_info = [];
 		$rows = get_cart($_SESSION["id"]);
+		$prod = get_products();
+
 		foreach ($rows as $row)
 		{
-			$cart_info[] = ["item_name"=>$_POST["name_hid"],
-							"quantity"=>$row["quantity"],
-							"price"=>$_POST["price_hid"],
-							"p_id"=>$_GET["id"]];
+			$name = get_product_name($row["prod_id"]);
+			$price = get_product_price($row["prod_id"]);
+			$cart_info[] = ["item_name"=>$name,
+								"quantity"=>$row["quantity"],
+								"price"=>$price,
+								"p_id"=>$row["prod_id"]];
 		}
 		render("items.php", ["cart_info"=>$cart_info]);
 	}
