@@ -3,6 +3,10 @@
 	require("admin_functions.php");
 	require_once("../db/connect.php");
 
+	if (!(isset($_SESSION["id"])))
+		render("error.php", ["message"=>"Please sign in!"]);
+	render("items.php", ["title"=>"My Cart"]);
+/*
 	if (isset($_POST["add_cart"]))
 	{
 		if (isset($_SESSION["cart"]))
@@ -18,7 +22,7 @@
 				$item_array = array(
 					'item_id'	=>	$_GET["id"],
 					'item_name'	=>	$_POST["name_hid"],
-					'item_price'=>	$_POST["price_hid"],
+	 				'item_price'=>	$_POST["price_hid"],
 					'nb_item'	=>	$_POST["quantity"]
 				);
 				$_SESSION["cart"][$count] = $item_array;
@@ -39,6 +43,22 @@
 			$_SESSION["cart"][0] = $item_array;
 		}
 	}
+	if (isset($_GET["action"]))
+	{
+		if ($_GET["action"] == "delete")
+		{
+			foreach($_SESSION["shopping_cart"] as $keys => $values)
+			{
+				if ($values["item_id"] == $_GET["id"])
+				{
+					var_dump($values["item_id"]);
+					unset($_SESSION["cart"][$keys]);
+					redirect("/public/index.php");
+				}
+			}
+		}
+	}
 	// Get cart information and details here
-	render("items.php", ["title"=>"Cart"]);
+	render("shop_front.php", ["title"=>"Cart"]);
+*/
 ?>
