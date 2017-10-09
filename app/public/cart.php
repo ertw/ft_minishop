@@ -16,28 +16,25 @@
 				// count all elemns in array
 				$count = count($_SESSION["cart"]);
 				$item_array = array(
-					'item_id'	=>	$_GET["id"]
-					'item_name'	=>	$_POST["name_hid"]
-					'item_price'=>	$_POST["price_hid"]
-					'nb_item'	=>	$_POST["quantity"];
+					'item_id'	=>	$_GET["id"],
+					'item_name'	=>	$_POST["name_hid"],
+					'item_price'=>	$_POST["price_hid"],
+					'nb_item'	=>	$_POST["quantity"]
 				);
 				$_SESSION["cart"][$count] = $item_array;
 			}
 			// if item already added into cart
 			else
-			{
 				// item should already be added so redirect user to index
-				echo "Item already added";
-				redirect("/public/index.php");
-			}
+				render("items.php", ["title"=>"My Cart"]);
 		}
 		else
 		{
 			$item_array = array(
-				'item_id'	=>	$_GET["id"]
-				'item_name'	=>	$_POST["name_hid"]
-				'item_price'=>	$_POST["price_hid"]
-				'nb_item'	=>	$_POST["quantity"];
+				'item_id'	=>	$_GET["id"],
+				'item_name'	=>	$_POST["name_hid"],
+				'item_price'=>	$_POST["price_hid"],
+				'nb_item'	=>	$_POST["quantity"]
 			);
 			$_SESSION["cart"][0] = $item_array;
 		}
