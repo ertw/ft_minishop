@@ -67,7 +67,7 @@ $result = pg_prepare($db, "", "
 create table if not exists minishop_db.carts (
   id serial primary key not null
 , creation_date timestamp not null default current_timestamp
-, user_id integer not null references minishop_db.users(id)
+, user_id integer not null references minishop_db.users(id) on delete cascade
 , prod_id integer not null
 , quantity integer not null default 0
 , constraint user_prod_un unique (user_id, prod_id)

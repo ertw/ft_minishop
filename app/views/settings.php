@@ -14,7 +14,7 @@
 	    <input class="submit" type="submit" value="Save"/>
 	</div>
 </form>
-<form action="deleteme.php" method="post">
+<form action="delete.php" method="post">
 	 <input style="margin-top: 6em" class="submit" type="submit" value="Delete Account?"/>
 </form>
 <?php endif ?>
