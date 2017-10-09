@@ -5,10 +5,19 @@
 
 	if (isset($_POST["add_cart"]))
 	{
-		add_to_cart($_SESSION["id"], $_GET["id"], $_POST["quantity"]);
-	/*
 		if (!(isset($_SESSION["id"])))
 			render("error.php", ["message"=>"Please sign in!"]);
+		add_to_cart($_SESSION["id"], $_GET["id"], $_POST["quantity"]);
+		$rows = get_cart($_SESSION["id"]);
+		$cart_info = [];
+		foreach ($rows as $row)
+		{
+			$cart_info[] = ["item_name"=>$_POST["name_hid"]
+							"quantity"=>]
+		}
+
+	/*
+
 		if (isset($_SESSION["cart"]))
 		{
 			$item_array_id = array_column($_SESSION["cart"], "item_id");
@@ -40,10 +49,9 @@
 
 			$_SESSION["cart"][0] = $item_array;
 		}
-	}
 	*/
+	}
 	if (isset($_GET["action"]))
-	{
 		//delete_order_from_cart($id, $prod_id);
 		redirect("/public/cart.php");
 		/*
@@ -59,6 +67,5 @@
 			}
 		}
 		*/
-	}
 	render("shop_front.php", ["title"=>NULL]);
 ?>

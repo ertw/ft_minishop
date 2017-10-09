@@ -115,6 +115,14 @@ function add_to_cart($user_id, $prod_id, $quantity) {
 	return $result;
 }
 
+function get_cart($id) {
+	$query = 'select * from minishop_db.cart where id = $1;';
+	$result = pg_query_params($query, array($id));
+	$cart = pg_fetch_all($result);
+	// this is a 2d array of cart
+	return $cart ? : [];
+}
+
 function delete_carts($user_id) {
 	$query = 'delete from minishop_db.carts where (user_id = $1);';
 	$result = pg_query_params($query, array($user_id));

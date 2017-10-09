@@ -10,10 +10,10 @@
 			<th width="5%">Action</th>
 		</tr>
 		<?php
-		if (!empty($_SESSION["cart"]))
-		{
-			$total = 0;
-			foreach($_SESSION["cart"] as $keys => $values)
+			$rows = get_cart($_SESSION["id"]);
+			//$price & $name; // get in index.php
+
+			foreach($rows => $row)
 			{
 		?>
 		<tr>
