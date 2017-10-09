@@ -1,7 +1,7 @@
 <?php require_once('../public/admin_functions.php'); ?>
 <h3>Admin Panel!</h3>
 <section name="delete_user">
-<h4>Delete a user</h4>
+<h4>View and delete users</h4>
 <hr>
 <form action="admin.php?act=delete_user_by_id" method="post">
 <?php
@@ -18,6 +18,26 @@ foreach(get_users() as $users => $user){
 </form>
 </section>
 
+
+<section name="delete_order">
+<h4>View and delete orders</h4>
+<hr>
+<form action="admin.php?act=delete_order" method="post">
+<?php
+foreach(get_orders() as $orders => $order){
+	echo '<p>email: ' . $order[email]
+		. '<br>details: ' . $order[details]
+		. '<br>ID: <b>' . $order[id]
+		. '</b></p>';
+}
+?>
+<p>Enter order ID to delete</p>
+<input type="number" name="user_id" required/>
+<input class="submit" type="submit" value="Delete Order"/>
+</form>
+</section>
+
+
 <section name="delete_product">
 <hr>
 <h4>Delete a product</h4>
@@ -33,6 +53,7 @@ foreach(get_products() as $products => $product){
 </form>
 </section>
 
+
 <section name="add_product">
 <hr>
 <h4>Add a product</h4>
@@ -46,6 +67,7 @@ Price: <input type="number" name="price" required/>
 <input class="submit" type="submit" value="Add Product"/>
 </form>
 </section>
+
 
 <section name="add_user">
 <hr>

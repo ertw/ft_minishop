@@ -22,6 +22,9 @@ if (is_admin_user($_SESSION['id'])) {
 		else if ($_GET[act] == 'add_user') {
 			add_user($_POST[user_name], $_POST[user_password], $_POST[email]);
 		}
+		else if ($_GET[act] == 'delete_order') {
+			delete_order_by_id($_POST[product_id]);
+		}
 		render("admin_form.php", ["title"=>NULL]);
 	}
 }

@@ -50,6 +50,20 @@ if (!$result) {
 	exit;
 }
 
+$result = pg_prepare($db, "", "
+create table if not exists minishop_db.orders (
+  id serial primary key not null
+, email varchar(255) not null references minishop_db.users(email)
+, creation_date timestamp not null default current_timestamp
+, details text not null default 'no order data'
+);
+");
+$result = pg_execute($db, "", []);
+if (!$result) {
+	echo "Error: Unable to create orders table.\n";
+	exit;
+}
+
 add_user(
 	'erik williamson'
 	, 'myPass'
@@ -86,6 +100,7 @@ add_product(
 );
 delete_product('Delete Me');
 delete_user('delete@me.com');
+add_order('me@erik.tw', 'this is my cool order of pusheens, for $99999');
 foreach(get_users() as $users => $user){
     echo '<p>' . $user[name] . '</p>';
 }

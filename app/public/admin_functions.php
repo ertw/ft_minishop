@@ -85,4 +85,24 @@ function get_products() {
 	return $products ? : [];
 }
 
+function add_order($email, $details) {
+	$query = 'insert into minishop_db.orders (email, details) values ($1, $2);';
+	$result = pg_query_params($query, array($email, $details));
+	return $result;
+}
+
+function get_orders() {
+	$query = 'select * from minishop_db.orders';
+	$result = pg_query($query);
+	$orders = pg_fetch_all($result);
+	// this is a 2d array of products
+	return $orders ? : [];
+}
+
+function delete_order_by_id($id) {
+	$query = 'delete from minishop_db.orders where ((id = $1))';
+	$result = pg_query_params($query, array($id));
+	return $result;
+}
+
 ?>
