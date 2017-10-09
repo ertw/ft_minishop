@@ -39,7 +39,7 @@ create table if not exists minishop_db.products (
   id serial primary key not null
 , productname varchar(255) not null
 , creation_date timestamp not null default current_timestamp
-, price money not null default 0
+, price numeric(10, 2) not null default 0
 , imagename varchar(255) not null default 'image.png'
 , category varchar(255) not null default 'default'
 );
