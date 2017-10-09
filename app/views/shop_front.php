@@ -11,7 +11,7 @@
         <h4 class="text-info"><?php echo $product[productname]; ?></h4>
         <h5 class="text-price"><?php echo $product[price]; ?></h5>
         <input type="text" name="quantity" class="form-control" value="1" />
-        <input type="hidden" name="name_hid" value="<?php echo $product[productname]; ?> />
+        <input type="hidden" name="name_hid" value="<?php echo $product[productname]; ?>" />
         <input type="hidden" name="price_hid" value="<?php echo $product[price]; ?>"/><br />
         <input name="add_cart" class="submit" type="submit" value="Add to Cart"/>
       </div>
