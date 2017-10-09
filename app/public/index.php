@@ -5,6 +5,8 @@
 
 	if (isset($_POST["add_cart"]))
 	{
+		add_to_cart($_SESSION["id"], $_GET["id"], $_POST["quantity"]);
+	/*
 		if (!(isset($_SESSION["id"])))
 			render("error.php", ["message"=>"Please sign in!"]);
 		if (isset($_SESSION["cart"]))
@@ -39,8 +41,12 @@
 			$_SESSION["cart"][0] = $item_array;
 		}
 	}
+	*/
 	if (isset($_GET["action"]))
 	{
+		//delete_order_from_cart($id, $prod_id);
+		redirect("/public/cart.php");
+		/*
 		if ($_GET["action"] == "delete")
 		{
 			foreach($_SESSION["cart"] as $keys => $values)
@@ -52,6 +58,7 @@
 				}
 			}
 		}
+		*/
 	}
 	render("shop_front.php", ["title"=>NULL]);
 ?>
