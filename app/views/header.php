@@ -21,6 +21,8 @@
 						<li><a href="cart.php">Cart</a></li>
 					<?php if (!empty($_SESSION["id"])): ?>
 						<li><a href="account.php">Account</a></li>
+					<?php if (is_admin_user($_SESSION["id"]))?>
+						<li><a href="admin.php">Admin</a></li>
 						<li><a href="logout.php">Log Out</a></li>
 					<?php else: ?>
 						<li><a href="login.php">Log In</a></li>
