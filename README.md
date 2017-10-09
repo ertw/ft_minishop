@@ -1,6 +1,6 @@
 ## ft_minishop
 
-This is a toy PHP application for learning. 
+This is a toy PHP application for learning. It was a two-day project that we started saturday morning and finished Sunday around midnight.
 
 ##### Requirements:
 
