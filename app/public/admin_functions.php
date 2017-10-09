@@ -13,15 +13,22 @@ function delete_user_by_id($id) {
 	return $result;
 }
 
-function add_user($name, $password, $email) {
+function add_user($name, $password_in_plaintext, $email) {
 	$query = "insert into minishop_db.users (name, password, email) values ($1, $2, $3);";
-	$result = pg_query_params($query, array($name, $password, $email));
+	$hash = password_hash($password_in_plaintext, PASSWORD_DEFAULT);
+	$result = pg_query_params($query, array($name, $hash, $email));
 	return $result;
 }
 
 function set_user_password($email, $newpassword) {
 	$query = "update minishop_db.users set password = $1 where email = $2;";
 	$result = pg_query_params($query, array($newpassword, $email));
+	return $result;
+}
+
+function set_user_admin($email) {
+	$query = "update minishop_db.users set privilege = 'admin' where email = $1;";
+	$result = pg_query_params($query, array($email));
 	return $result;
 }
 

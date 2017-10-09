@@ -16,6 +16,12 @@ if (is_admin_user($_SESSION['id'])) {
 		else if ($_GET[act] == 'delete_product') {
 			delete_product_by_id($_POST[product_id]);
 		}
+		else if ($_GET[act] == 'add_product') {
+			add_product($_POST[product_name], $_POST[price]);
+		}
+		else if ($_GET[act] == 'add_user') {
+			add_user($_POST[user_name], $_POST[user_password], $_POST[email]);
+		}
 		render("admin_form.php", ["title"=>NULL]);
 	}
 }

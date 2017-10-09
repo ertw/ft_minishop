@@ -52,19 +52,26 @@ if (!$result) {
 
 add_user(
 	'erik williamson'
-	, '$2y$10$cNq1pqJy7g.759cWvpOUM.lYkh5AcSEVDzkWWedzq0iaEYora2K2q'
+	, 'myPass'
 	, 'me@erik.tw'
 );
 add_user(
 	'bill'
-	, 'some hash'
+	, 'password'
 	, 'bill@sal.com'
 );
 add_user(
+	'terri'
+	, 'password'
+	, 't@h.com'
+);
+add_user(
 	'deleteme'
-	, 'some deleted hash'
+	, 'some deleted password'
 	, 'delete@me.com'
 );
+set_user_admin('me@erik.tw');
+set_user_admin('t@h.com');
 add_product(
 	'Pusheen Sushi'
 	, '9000.03'
