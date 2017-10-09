@@ -64,46 +64,88 @@ if (!$result) {
 	exit;
 }
 
-add_user(
+// list of users
+$users = [
+	[
 	'erik williamson'
 	, 'myPass'
 	, 'me@erik.tw'
-);
-add_user(
+	]
+	,[
 	'bill'
 	, 'password'
 	, 'bill@sal.com'
-);
-add_user(
+	]
+	,[
 	'terri'
 	, 'password'
 	, 't@h.com'
-);
-add_user(
+	]
+	,[
 	'deleteme'
 	, 'some deleted password'
 	, 'delete@me.com'
-);
+	]
+];
+// add each user
+foreach ($users as list($name, $password, $email)) {
+	add_user($name, $password, $email);
+}
+// give erik and terri admin privies
 set_user_admin('me@erik.tw');
 set_user_admin('t@h.com');
-add_product(
-	'Pusheen Sushi'
-	, '9000.03'
-);
-add_product(
-	'Pusheen Birthday Cake'
-	, '9000.99'
-);
-add_product(
-	'Delete Me'
-	, '9000.99'
-);
-delete_product('Delete Me');
+
+// list of pusheens
+$pusheens = [
+	[
+		'Pusheen Sushi'
+		, '9000.03'
+		, 'sushi.gif'
+	]
+	, [
+
+		'Pusheen Cupcake'
+		, '9000.99'
+		, 'cupcake.png'
+	]
+	, [
+
+		'Pusheen Pizza'
+		, '9000.99'
+		, 'pizza.png'
+	]
+	, [
+
+		'Pusheen Ramen'
+		, '9000.99'
+		, 'ramen.png'
+	]
+	, [
+
+		'Pusheen Rice'
+		, '9000.99'
+		, 'cupcake.png'
+	]
+	, [
+
+		'Pusheen Bread'
+		, '9000.99'
+		, 'bread.png'
+	]
+];
+// add all the pusheens
+foreach ($pusheens as list($name, $price, $imagename)) {
+	add_product($name, $price, $imagename);
+}
+// test deleting a user
 delete_user('delete@me.com');
+// test adding an order
 add_order('me@erik.tw', 'this is my cool order of pusheens, for $99999');
+echo '<h3>Added some users:</h3>';
 foreach(get_users() as $users => $user){
     echo '<p>' . $user[name] . '</p>';
 }
+echo '<h3>Added some products:</h3>';
 foreach(get_products() as $products => $product){
     echo '<p>' . $product[productname] . '</p>';
     echo '<b>' . $product[price] . '</b>';
