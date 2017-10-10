@@ -1,6 +1,6 @@
 ## ft_minishop
 
-This is a toy PHP application for learning. It was a two-day project that we started saturday morning and finished Sunday around midnight.
+This is a toy CRUD application written in PHP so we practice full stack development. It was a two-day project that we started saturday morning and finished Sunday around midnight.
 
 ##### Tools:
 * Docker, docker-machine, docker-compose, Alpine Linux
